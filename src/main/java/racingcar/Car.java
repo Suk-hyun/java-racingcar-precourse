@@ -9,4 +9,13 @@ public class Car {
     }
 
     // 추가 기능 구현
+    public void takeAction(Movement movement) {
+        if (movement == Movement.FORWARD) {
+            this.position += 1;
+        }
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
 }
