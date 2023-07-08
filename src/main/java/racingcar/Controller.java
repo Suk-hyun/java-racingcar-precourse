@@ -1,10 +1,13 @@
 package racingcar;
 
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
+
+import java.util.List;
 
 
 public class Controller {
-    Cars cars;
+    private Cars cars;
 
     public void makeCars() {
         String carNameInput = InputView.requestCarNameInput();
@@ -13,6 +16,23 @@ public class Controller {
         cars = new Cars(carNames);
     }
 
+    public void playGame() {
+        String trialNumberInput = InputView.requestTrialNumber();
+        int trialNumber = Integer.parseInt(trialNumberInput);
+        play(trialNumber);
+    }
 
+    private void play(int trialNumber) {
+        for (int i = 0; i < trialNumber; i++) {
+            cars.race();
+            List<Car> allCars = cars.getCars();
+            printRaceResult(allCars);
+        }
+    }
 
+    private void printRaceResult(List<Car> allCars) {
+        for (Car car : allCars) {
+            OutputView.printRaceResult(car.getName(), car.getPosition());
+        }
+    }
 }
