@@ -1,6 +1,8 @@
 package racingcar;
 
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +11,23 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(String[] carNames) {
-        List<Car> tmpList = new ArrayList<>();
+        List<Car> carWithNames = mapCarWithName(carNames);
+        cars = new ArrayList<>(carWithNames);
+    }
+
+    private List<Car> mapCarWithName(String[] carNames) {
+        List<Car> carWithNames = new ArrayList<>();
         for (String carName : carNames) {
-            tmpList.add(new Car(carName));
+            carWithNames.add(new Car(carName));
         }
-        cars = new ArrayList<>(tmpList);
+        return carWithNames;
+    }
+
+    public void race() {
+        for (Car car : cars) {
+            int randomNumber = Randoms.pickNumberInRange(0, 9);
+            Movement movement = Movement.isStopOrForward(randomNumber);
+            car.takeAction(movement);
+        }
     }
 }
