@@ -4,8 +4,6 @@ public class Application {
     public static void main(String[] args) {
         // TODO 구현 진행
         Controller controller = new Controller();
-        controller.makeCars();
-        controller.playGame();
-        controller.wrappingUpGame();
+        controller.run();
     }
 }
