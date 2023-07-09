@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -10,7 +12,18 @@ import java.util.List;
 public class Controller {
     private Cars cars;
 
+    public void run() {
+        try {
+            makeCars();
+            playGame();
+            wrappingUpGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void makeCars() {
+        OutputView.printRequestForCarNameMsg();
         String carNameInput = InputView.requestCarNameInput();
 
         String[] carNames = carNameInput.split(",");
@@ -18,6 +31,7 @@ public class Controller {
     }
 
     public void playGame() {
+        OutputView.printAskTrialNumberMsg();
         String trialNumberInput = InputView.requestTrialNumber();
         int trialNumber = Integer.parseInt(trialNumberInput);
         play(trialNumber);
@@ -38,6 +52,7 @@ public class Controller {
     }
 
     private void play(int trialNumber) {
+        OutputView.printRaceResultMsg();
         for (int i = 0; i < trialNumber; i++) {
             cars.race();
             List<Car> allCars = cars.getCars();
@@ -49,5 +64,6 @@ public class Controller {
         for (Car car : allCars) {
             OutputView.printRaceResult(car.getName(), car.getPosition());
         }
+        System.out.println();
     }
 }
