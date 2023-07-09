@@ -14,6 +14,17 @@ public class Car {
     }
 
     private void validate(String name) {
+        isValidLength(name);
+        isBlank(name);
+    }
+
+    private void isBlank(String name) {
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 이름 값은 빈칸일 수 없다.");
+        }
+    }
+
+    private void isValidLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_BY_OVERSIZE_ERROR_MSG);
         }
