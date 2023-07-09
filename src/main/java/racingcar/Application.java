@@ -6,5 +6,6 @@ public class Application {
         Controller controller = new Controller();
         controller.makeCars();
         controller.playGame();
+        controller.wrappingUpGame();
     }
 }

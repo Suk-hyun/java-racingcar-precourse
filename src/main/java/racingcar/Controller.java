@@ -3,6 +3,7 @@ package racingcar;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,7 +25,16 @@ public class Controller {
 
     public void wrappingUpGame() {
         List<Car> winners = cars.getWinners();
+        List<String> winnerNames = getWinnerNames(winners);
+        OutputView.printWinners(winnerNames);
+    }
 
+    private List<String> getWinnerNames(List<Car> winners) {
+        List<String> winnerNames = new ArrayList<>();
+        for (Car winner : winners) {
+            winnerNames.add(winner.getName());
+        }
+        return winnerNames;
     }
 
     private void play(int trialNumber) {
