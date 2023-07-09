@@ -22,6 +22,11 @@ public class Controller {
         play(trialNumber);
     }
 
+    public void wrappingUpGame() {
+        List<Car> winners = cars.getWinners();
+
+    }
+
     private void play(int trialNumber) {
         for (int i = 0; i < trialNumber; i++) {
             cars.race();
