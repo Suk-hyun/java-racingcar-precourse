@@ -19,7 +19,7 @@ public class Car {
     }
 
     private void isBlank(String name) {
-        if (name.isEmpty()) {
+        if (name.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 이름 값은 빈칸일 수 없다.");
         }
     }
