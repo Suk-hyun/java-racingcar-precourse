@@ -11,4 +11,8 @@ public enum Movement {
         }
         return STOP;
     }
+
+    public static Boolean isForward(Movement movement) {
+        return movement == FORWARD;
+    }
 }

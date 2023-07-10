@@ -5,10 +5,11 @@ public class Car {
     public static final int INITIAL_POSITION = 0;
     public static final int FORWARD_ADDED_VALUE = 1;
     public static final String NAME_BY_OVERSIZE_ERROR_MSG = "[ERROR] 이름은 5자 이하여야 한다.";
+    public static final String NAME_BLANK_ERROR_MSG = "[ERROR] 이름 값은 빈칸일 수 없다.";
     private final String name;
     private int position = INITIAL_POSITION;
 
-    public Car(String name) {
+    public Car(final String name) {
         validate(name);
         this.name = name;
     }
@@ -20,7 +21,7 @@ public class Car {
 
     private void isBlank(String name) {
         if (name.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 이름 값은 빈칸일 수 없다.");
+            throw new IllegalArgumentException(NAME_BLANK_ERROR_MSG);
         }
     }
 
@@ -32,7 +33,7 @@ public class Car {
 
     // 추가 기능 구현
     public void takeAction(Movement movement) {
-        if (movement == Movement.FORWARD) {
+        if (Movement.isForward(movement)) {
             this.position += FORWARD_ADDED_VALUE;
         }
     }
@@ -43,5 +44,9 @@ public class Car {
 
     public int getPosition() {
         return this.position;
+    }
+
+    public Boolean isWinner(int winnerPosition) {
+        return this.position == winnerPosition;
     }
 }

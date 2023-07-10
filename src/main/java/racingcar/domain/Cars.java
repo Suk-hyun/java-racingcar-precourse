@@ -40,15 +40,11 @@ public class Cars {
     public List<Car> getWinners() {
         List<Car> winners = new ArrayList<>();
         for (Car car : cars) {
-            if (isWinner(car)) {
+            if (car.isWinner(getWinnerPosition())) {
                 winners.add(car);
             }
         }
         return winners;
-    }
-
-    private boolean isWinner(Car car) {
-        return car.getPosition() == getWinnerPosition();
     }
 
     private Integer getWinnerPosition() {
